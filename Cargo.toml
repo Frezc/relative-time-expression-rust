@@ -1,0 +1,5 @@
+[package]
+name = "rte"
+version = "0.1.0"
+authors = ["frezc <frezcw@gmail.com>"]
+edition = "2018"
