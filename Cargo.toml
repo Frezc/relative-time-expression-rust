@@ -6,14 +6,15 @@ homepage = "https://github.com/Frezc/relative-time-expression-rust"
 repository = "https://github.com/Frezc/relative-time-expression-rust"
 readme = "readme.md"
 keywords = ["relative-time", "expression", "time"]
-version = "0.1.0"
+version = "0.1.1"
 authors = ["frezc <frezcw@gmail.com>"]
 edition = "2018"
 include = [
     "**/*.rs",
     "Cargo.toml",
 ]
-categories = ["parsr-implementations", "encoding"]
+categories = ["parser-implementations", "encoding"]
+license = "MIT"
 
 [badges]
 
