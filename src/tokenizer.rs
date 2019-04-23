@@ -87,16 +87,19 @@ impl<'a> Tokenizer<'a> {
   }
 
   fn read_now_or_err(&mut self) -> Result<Token, Error> {
+    println!("{}", self.iter.peek().unwrap().1);
     let start = self.iter.peek().unwrap().0;
     let mut raw = String::new();
     let now: Vec<char> = NOW.chars().collect();
     for i in 0..3 {
       if let Some((_, c)) = self.iter.next() {
+        eprintln!("{}", c);
+        eprintln!("{}", i);
+        eprintln!("{}", now[i]);
         raw.push(c);
         if c.to_lowercase().next().unwrap() != now[i] {
           let len = raw.len();
-          return Err(Error {
-            expect: None,
+          return Err(Error::Unknown {
             actual: raw,
             start,
             end: start + len,
@@ -120,15 +123,15 @@ impl<'a> Tokenizer<'a> {
     })
   }
 
-  fn read_while(&mut self, typ: &str, mut predicate: impl FnMut((usize, char)) -> bool) -> Token {
+  fn read_while(&mut self, typ: &str, mut predicate: impl FnMut((&usize, &char)) -> bool) -> Token {
     let start = self.iter.peek().unwrap().0;
     let mut raw = String::new();
     let mut end = start;
-    while self.iter.peek().is_some() {
-      let (i, c) = self.iter.next().unwrap();
+    while let Some((i, c)) = self.iter.peek() {
       if predicate((i, c)) {
-        raw.push(c);
+        raw.push(*c);
         end += 1;
+        self.iter.next();
       } else {
         break
       }

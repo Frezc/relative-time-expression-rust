@@ -7,12 +7,13 @@ pub use error::*;
 pub use tokenizer::*;
 pub use parser::*;
 
-/// parse expression string to ast
+/// parse expression string to ast, then you can use any time library to transform moment.
+/// check the doc at https://github.com/Frezc/relative-time-expression
 /// # Examples
 /// ```
 /// use rte::*;
 /// let ast = parse("+ M\\M");
-/// assert_eq!(ast, Expression {
+/// assert_eq!(ast.unwrap(), Expression {
 ///    r#type: "Expression".to_string(),
 ///    start: 0,
 ///    end: 5,
@@ -35,6 +36,6 @@ pub use parser::*;
 ///    ],
 ///  });
 /// ```
-pub fn parse(exp: &str) -> Result<Expression, Error> {
+pub fn  parse(exp: &str) -> Result<Expression, Error> {
   Parser::parse(&Tokenizer::parse(exp)?)
 }
