@@ -2,10 +2,12 @@ pub mod types;
 pub mod error;
 pub mod tokenizer;
 pub mod parser;
+pub mod encode;
 pub use types::*;
 pub use error::*;
 pub use tokenizer::*;
 pub use parser::*;
+pub use encode::*;
 
 /// parse expression string to ast, then you can use any time library to transform moment.
 /// check the doc at https://github.com/Frezc/relative-time-expression

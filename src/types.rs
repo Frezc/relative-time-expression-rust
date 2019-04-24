@@ -32,3 +32,24 @@ pub enum Manipulation {
     end: usize,
   },
 }
+
+#[derive(PartialEq, Debug)]
+pub struct InputExpression {
+  pub r#type: String,
+  pub body: Vec<InputManipulation>,
+}
+
+#[derive(PartialEq, Debug)]
+pub enum InputManipulation {
+  Offset {
+    r#type: String,
+    op: String,
+    number: usize,
+    unit: String,
+  },
+  Period {
+    r#type: String,
+    op: String,
+    unit: String,
+  },
+}
