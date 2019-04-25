@@ -87,15 +87,11 @@ impl<'a> Tokenizer<'a> {
   }
 
   fn read_now_or_err(&mut self) -> Result<Token, Error> {
-    println!("{}", self.iter.peek().unwrap().1);
     let start = self.iter.peek().unwrap().0;
     let mut raw = String::new();
     let now: Vec<char> = NOW.chars().collect();
     for i in 0..3 {
       if let Some((_, c)) = self.iter.next() {
-        eprintln!("{}", c);
-        eprintln!("{}", i);
-        eprintln!("{}", now[i]);
         raw.push(c);
         if c.to_lowercase().next().unwrap() != now[i] {
           let len = raw.len();
