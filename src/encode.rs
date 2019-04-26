@@ -6,7 +6,7 @@ use crate::types::*;
 /// ```
 /// use rte::*;
 /// assert_eq!(
-///  encode(InputExpression {
+///  encode(&InputExpression {
 ///    r#type: "Expression".to_string(),
 ///    body: vec![InputManipulation::Offset {
 ///      r#type: "Offset".to_string(),
@@ -18,7 +18,7 @@ use crate::types::*;
 ///  "now+12M"
 /// )
 /// ```
-pub fn encode(expression: InputExpression) -> String {
+pub fn encode(expression: &InputExpression) -> String {
   let result = String::from("now");
   result + &expression.body.iter().map(|item| match item {
     InputManipulation::Offset { op, number, unit, .. } =>

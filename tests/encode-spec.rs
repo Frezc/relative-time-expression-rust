@@ -3,7 +3,7 @@ use rte::*;
 #[test]
 fn encode_simple() {
   assert_eq!(
-    encode(InputExpression {
+    encode(&InputExpression {
       r#type: "Expression".to_string(),
       body: vec![InputManipulation::Offset {
         r#type: "Offset".to_string(),
@@ -19,7 +19,7 @@ fn encode_simple() {
 #[test]
 fn encode_complex() {
   assert_eq!(
-    encode(InputExpression {
+    encode(&InputExpression {
       r#type: "Expression".to_string(),
       body: vec![InputManipulation::Offset {
         r#type: "Offset".to_string(),
@@ -48,7 +48,7 @@ fn encode_complex() {
 #[test]
 fn encode_empty() {
   assert_eq!(
-    encode(InputExpression {
+    encode(&InputExpression {
       r#type: "Expression".to_string(),
       body: vec![],
     }),

@@ -38,6 +38,15 @@ pub use encode::*;
 ///    ],
 ///  });
 /// ```
-pub fn  parse(exp: &str) -> Result<Expression, Error> {
+pub fn parse(exp: &str) -> Result<Expression, Error> {
   Parser::parse(&Tokenizer::parse(exp)?)
+}
+
+/// format expression to standard
+/// # Examples
+/// ```
+/// assert_eq!(rte::standardize(" now   - 1   d /w").unwrap(), "now-d/w")
+/// ```
+pub fn standardize(exp: &str) -> Result<String, Error> {
+  Ok(encode(&parse(exp)?.into()))
 }
